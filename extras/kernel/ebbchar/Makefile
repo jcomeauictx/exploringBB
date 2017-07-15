@@ -1,4 +1,4 @@
-ifneq (,$(ARTIK7))
+ifneq (,$(ARTIK7_ON_AMD64))
 ARCH := arm64
 CROSS_COMPILE := aarch64-linux-gnu-
 KBUILD_CFLAGS_MODULE := -mcmodel=small
