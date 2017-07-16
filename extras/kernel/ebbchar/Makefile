@@ -12,7 +12,7 @@ KDIR := /usr/src/linux-artik
 else
 KDIR := /lib/modules/$(shell uname -r)/build/
 endif
-obj-m+=ebbchar.o
+obj-m += $(notdir $(PWD)).o
 export
 
 all:
