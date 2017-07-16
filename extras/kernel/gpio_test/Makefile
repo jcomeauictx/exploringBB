@@ -12,6 +12,11 @@ KDIR := /usr/src/linux-artik
 else
 KDIR := /lib/modules/$(shell uname -r)/build/
 endif
+# default values for LED and SWITCH are for the BeagleBone
+# for the ARTIK 710 dev board, use `make LED=28 SWITCH=30 clean all`
+LED ?= 49
+SWITCH ?= 115
+ccflags-y += -DLED=$(LED) -DSWITCH=$(SWITCH)
 obj-m += $(notdir $(PWD)).o
 export
 

@@ -6,6 +6,10 @@
  * sysfs /sys/class/gpio/gpio115 and gpio49. Therefore, this test LKM circuit assumes that an LED
  * is attached to GPIO 49 which is on P9_23 and the button is attached to GPIO 115 on P9_27. There
  * is no requirement for a custom overlay, as the pins are in their default mux mode states.
+ *
+ * jc@unternet.net: The GPIO values for LED and SWITCH can be changed in the
+ * Makefile, for use on other dev boards.
+ *
  * @see http://www.derekmolloy.ie/
 */
 
@@ -20,8 +24,8 @@ MODULE_AUTHOR("Derek Molloy");
 MODULE_DESCRIPTION("A Button/LED test driver for the BBB");
 MODULE_VERSION("0.1");
 
-static unsigned int gpioLED = 49;       ///< hard coding the LED gpio for this example to P9_23 (GPIO49)
-static unsigned int gpioButton = 115;   ///< hard coding the button gpio for this example to P9_27 (GPIO115)
+static unsigned int gpioLED = LED;      ///< The default LED gpio for this example to P9_23 (GPIO49)
+static unsigned int gpioButton = SWITCH; ///< The default button gpio for this example to P9_27 (GPIO115)
 static unsigned int irqNumber;          ///< Used to share the IRQ number within this file
 static unsigned int numberPresses = 0;  ///< For information, store the number of button presses
 static bool	    ledOn = 0;          ///< Is the LED on or off? Used to invert its state (off by default)
