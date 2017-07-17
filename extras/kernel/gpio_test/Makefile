@@ -17,12 +17,17 @@ endif
 LED ?= 49
 SWITCH ?= 115
 ccflags-y += -DLED=$(LED) -DSWITCH=$(SWITCH)
-obj-m += $(notdir $(PWD)).o
+obj-m := $(notdir $(PWD)).o
 export
 
-all:
+all: build test
+build:
 	make -C $(KDIR) M=$(PWD) modules
 clean:
 	make -C $(KDIR) M=$(PWD) clean
 env:
 	$@
+test:
+	-insmod $(obj-m:.o=.ko)
+	@read -p "Hit <enter> when done testing the switch..."
+	rmmod $(obj-m:.o=.ko)
